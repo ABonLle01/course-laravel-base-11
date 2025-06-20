@@ -9,6 +9,13 @@
 <body>
     {{-- <header>Header</header> --}}
 
+    @if (session('status'))
+        <div>
+            {{ session('status') }}
+        </div>
+        
+    @endif
+
     @yield('content')
 
     <section>
