@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\blog\BlogController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\UserAccessDashboardMiddleware;
@@ -24,5 +25,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', UserAccessDashbo
         'category'=> App\Http\Controllers\Dashboard\CategoryController::class,
     ]);
 });
+
+Route::group(['prefix' => 'blog'], function () {
+    Route::get('', [BlogController::class, 'index'])->name('blog.index');
+    Route::get('detail/{post}', [BlogController::class, 'show'])->name('blog.show');
+});
+
 
 require __DIR__.'/auth.php';
